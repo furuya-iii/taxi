@@ -122,7 +122,7 @@ class taxi
 
         $upmeter = $startdata[0];
         $meter = 0;
-        $price = array($startdata[1]);
+        $price = $startdata[1];
 
         foreach ($intervalstr as $key=>$interval) {
             $meter = $meter + $intervalint[$interval][0];
@@ -130,12 +130,11 @@ class taxi
             if ($meter > $upmeter) {
                 while ($meter > $upmeter) {
                     $upmeter = $upmeter + 200;
-                    array_push($price, $intervalint[$interval][1]);
+                    $price = $price + $intervalint[$interval][1];
                 }
             }
         }
 
-        $pricecalc = array_sum($price);
-        return $this->pricecalc = $pricecalc;
+        return $this->pricecalc = $price;
     }
 }
